@@ -2,7 +2,7 @@ package pages;
 
 public class PrincipalPage extends BasePage {
     String createLinkString = "//a[text()='Create an Account' and @href]";
-
+    
     public PrincipalPage() {
         super(driver);
         
@@ -17,5 +17,12 @@ public class PrincipalPage extends BasePage {
         scrollToElement(createLinkString);
         clickElement(createLinkString);
     }
+
+  
+
+
+    
+
+    
 
 }

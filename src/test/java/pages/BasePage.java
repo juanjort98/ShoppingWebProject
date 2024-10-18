@@ -10,6 +10,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,9 +36,12 @@ public class BasePage {
     }
 
     public WebElement findLocator(String locator) {
+        
         WebElement findedLocator = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
         return findedLocator;
     }
+
+    
 
     public void clickElement(String locator) {
         findLocator(locator).click();
@@ -84,6 +88,13 @@ public class BasePage {
     public void scrollToElement(String locator) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", findLocator(locator));
         wait.until(ExpectedConditions.elementToBeClickable(findLocator(locator)));
+    }
+
+    public void hoverElement(String locator){
+
+        Actions builder = new Actions(driver);
+        builder.moveToElement(findLocator(locator)).perform();;
+
     }
 
     public static void closeBrowser() {
